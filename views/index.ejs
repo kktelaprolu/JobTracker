@@ -24,7 +24,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
 		integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
@@ -281,6 +280,19 @@
 	/* :required {
  		background-color: black;
 	} */
+
+	.test{
+
+		-moz-opacity: 0.6;
+
+		-ms-opacity: 0.6;
+
+		-webkit-opacity: 0.6;
+
+		opacity: 0.6;
+
+}
+
 </style>
 
 <script type="text/javascript">
@@ -648,7 +660,7 @@ $(document).ready(function() {
 					expdropdowndrop = expdropdowndrop +
 						'<option value="' + result[0][i].experinceid + '">' + result[0][i].experince + '</option>';
 				}
-				$("#experience").html(expdropdowndrop);
+				// $("#experience").html(expdropdowndrop);
 			}
 		});
 	}
@@ -841,6 +853,7 @@ $(document).ready(function() {
 				$("#peditdesiredlocation").html(currentlocation);
 				$("#jlocation").html(currentlocation);
 				$("#intlocation").html(currentlocation);
+				$("#jloc").html(currentlocation);
 
 			}
 		});
@@ -1031,7 +1044,7 @@ $(document).ready(function() {
 		var Exp = $('[name="experience"]').val();
 		var PSkill = $('[name="primary_skill"]').val();
 		var SSkill = $('[name="secondry_skill"]').val();
-		var locationflex = $('[name="loc_flex"]').val();
+		var locationflex = $('input[name=loc_flex]:checked').val();
 		var customerid = $('[name="customer"]').val();
 		var jdstatus = $('[name="jstatus"]').val();
 		var buid = $('[name="bu_unit"]').val();
@@ -1832,7 +1845,7 @@ $(document).ready(function() {
 						<ul class="nav">
 
 							<li class="active"><a href="#" data-toggle="tab" data-target="#jobsTab"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;">Requirments</li>
+									style="font-size: 20px;color: #73c7e7;font-weight: 900;">Requirement</li>
 							<li><a href="#" data-toggle="tab" id="jobstabid" data-target="#operationsTab"
 									style="font-size: 20px;color: #73c7e7;font-weight: 900;padding: 0 32px;"
 									onclick="joblistingdetails()">Jobs</a></li>
@@ -1895,7 +1908,7 @@ $(document).ready(function() {
 													</div>
 
 													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Sales Regions:</label>
+														<label><span style="color:red;">*</span>Sales Region:</label>
 													</div>
 													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 														<select class="form-control" id="salesregion"
@@ -1907,15 +1920,15 @@ $(document).ready(function() {
 												<div class="row">
 													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Sales
-															Representatives:</label></div>
+														<label style="width: 133px;"><span style="color:red;">*</span>Sales
+															Representative:</label></div>
 													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 														<select class="form-control" id="salesrepresent" name="sale_rep"
 															required></select>
 													</div>
 
 													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Customers:</label></div>
+														<label><span style="color:red;">*</span>Customer:</label></div>
 													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 														<select class="form-control" id="cus" name="customer"
 															required></select>
@@ -1989,21 +2002,21 @@ $(document).ready(function() {
 															<input type="text" id="requirement" name="Requirementid"
 																class="form-control" required>
 														</div>
-
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Role/Domain:</label>
-														</div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="role" name="role"
+															<label><span style="color:red;">*</span>No of
+																Positions:</label></div>
+														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+															<input type="text" id="positions" name="positions"
 																class="form-control" required>
 														</div>
+														
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 
 													</div>
 													<div class="row">
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Role Level:</label>
+															<label><span style="color:red;">*</span>Tech Level:</label>
 														</div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 
@@ -2031,26 +2044,22 @@ $(document).ready(function() {
 													<div class="row">
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Close Date:</label>
+															<label style="width: 144px;"><span style="color:red;">*</span>Requirement Opens on:</label>
+														</div>
+														<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+														<input type="date" id="reqdate" name="req_date"
+																class="form-control" required>
+														</div>
+														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+															<label style="width: 145px;"><span style="color:red;">*</span>Requirement Closes on:</label>
 														</div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 															<input type="date" id="edate" name="ex_date"
 																class="form-control" required>
 														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Date Of
-																Request:</label>
-														</div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-
-															<input type="date" id="reqdate" name="req_date"
-																class="form-control" required>
-														</div>
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 
 													</div>
-
 
 													<div class="row">
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
@@ -2078,19 +2087,15 @@ $(document).ready(function() {
 															<label><span style="color:red;">*</span>Job
 																Location:</label></div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="jloc" name="job_location"
-																class="form-control" required>
+															<select id="jloc" name="job_location" class="form-control" required></select>
 														</div>
 
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
 															<label><span style="color:red;">*</span>Location
 																Flexiblity:</label></div>
 														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<select id="locflex" class="form-control" name="loc_flex" required>
-																<!-- <option value="">Select</option> -->
-																<option value="Y">Yes</option>
-																<option value="N">No</option>
-															</select>
+																<input type="radio" value="Y" id="locflexy" name="loc_flex"><label>Yes</label>
+																<input type="radio" value="N" id="locflexn" name="loc_flex"><label>No</label>
 														</div>
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 													</div>
@@ -2108,7 +2113,7 @@ $(document).ready(function() {
 
 														</div>
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Duration:</label>
+															<label><span style="color:red;">*</span>Duration Of The Assignment:</label>
 														</div>
 														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 															<input type="text" id="jduration" name="jduration"
@@ -2122,17 +2127,17 @@ $(document).ready(function() {
 													<div class="row">
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Experience:</label>
+															<label style="width: 140px;"><span style="color:red;">*</span>Experience(In Months):</label>
 														</div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="experience" name="experience"
+															<input type="tel" id="experience" name="experience" MinLength="1" MaxLength="3" pattern="\d{3}"
 																class="form-control" required>
 														</div>
 														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>No of
-																Positions:</label></div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="positions" name="positions"
+															<label><span style="color:red;">*</span>Role/Domain:</label>
+														</div>
+														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+															<input type="text" id="role" name="role"
 																class="form-control" required>
 														</div>
 														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
@@ -2746,7 +2751,7 @@ $(document).ready(function() {
 								</div>
 								<div class="col-sm-3">
 
-									<input type="tel" id="mobile" name="p_mobile" class="form-control" pattern="[0-9]{10}" required>
+									<input type="tel" id="mobile" name="p_mobile" class="form-control" MaxLength="10" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Email:</label>
@@ -2765,7 +2770,7 @@ $(document).ready(function() {
 								</div>
 								<div class="col-sm-3">
 
-									<input type="date" id="dob" name="p_dob" class="form-control" required>
+									<input type="date" id="dob" name="p_dob" class="form-control" min="1970-01-01" max="2002-01-01" required>
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -3035,9 +3040,9 @@ $(document).ready(function() {
 									<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profile Status:</h4>
 								</div>
 								<div class="col-sm-3">
-									<button type="button" id="lttsInterviewBtn" data-dismiss="modal"
+									<button type="button" id="lttsInterviewBtn"
 										style="display: none;">Schedule Ltts Interview</button>
-									<button type="button" id="customerInterviewBtn" data-dismiss="modal" style="display: none;">Schedule
+									<button type="button" id="customerInterviewBtn" style="display: none;">Schedule
 										Customer Interview</button>
 								</div>
 							</div>
@@ -3108,7 +3113,7 @@ $(document).ready(function() {
 								</div>
 								<div class="col-sm-3">
 
-									<input type="tel" id="peditmobile" name="pedit_mobile" class="form-control" pattern="[0-9]{10}"	required>
+									<input type="tel" id="peditmobile" name="pedit_mobile" class="form-control" MaxLength="10" pattern="[0-9]{10}"	required>
 								</div>
 
 								<div class="col-sm-2">
@@ -3456,7 +3461,7 @@ $(document).ready(function() {
 									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="tel" id="recruitercontno" name="recruiter_contno" class="form-control" pattern="[0-9]{10}" required>
+									<input type="tel" id="recruitercontno" name="recruiter_contno" class="form-control" MaxLength="10" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3578,7 +3583,7 @@ $(document).ready(function() {
 									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="tel" id="editrecruitercontno" name="editrecruiter_contno" class="form-control" pattern="[0-9]{10}" required>
+									<input type="tel" id="editrecruitercontno" name="editrecruiter_contno" class="form-control" MaxLength="10" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3630,9 +3635,25 @@ $(document).ready(function() {
 						<button type="button" class="close" data-dismiss="modal"
 							>&times;</button>
 					</div>
-					<div class="modal-body" style="height:200px;">
+					<div class="modal-body" style="height:238px;">
 						<form action="post" onsubmit="return false">
-
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;"><span style="color:red">*</span>Candidate Name:</label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" id="custcandname" name="custcand_name"
+										class="form-control" required>
+								</div>
+								<div class="col-sm-2">
+									<label style="width: 113px;"><span style="color:red">*</span>Job Role:</label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="custjobrole" name="custjob_role" class="form-control" required>
+								</div>
+								<div class="col-sm-1"></div>
+							</div>	
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
@@ -3643,7 +3664,7 @@ $(document).ready(function() {
 									<select id="intcustomer" name="int_customer" class="form-control" required></select>
 								</div>
 								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Location:</label>
+									<label style="width: 114px;"><span style="color:red">*</span>Interview Location:</label>
 								</div>
 								<div class="col-sm-3">
 
@@ -3671,16 +3692,10 @@ $(document).ready(function() {
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Interview Date:</label>
+									<label style="width: 113px;"><span style="color:red">*</span>Interview Date & Time:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="date" id="custintdate" name="custint_date" class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Interview Time:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="date" id="custinttime" name="custnt_time" class="form-control" required>
+									<input type="datetime-local" id="custinttime" name="custnt_time" class="form-control" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3707,36 +3722,34 @@ $(document).ready(function() {
 				<button type="button" class="close" data-dismiss="modal"
 							>&times;</button>
 			</div>
-			<div class="modal-body" style="height:216px;">
+			<div class="modal-body" style="height:238px;">
 				<form action="post" onsubmit="return false">
-					
 					
 					<div class="row">
 						<div class="col-sm-1"></div>
 						<div class="col-sm-2">
-							<label><span style="color:red">*</span>Interviewer Name:</label>
+							<label style="width: 113px;"><span style="color:red">*</span>Candidate Name:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="lttscandname" name="lttscand_name"
+								class="form-control" required>
+						</div>
+						<div class="col-sm-2">
+							<label style="width: 113px;"><span style="color:red">*</span>Job Role:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="text" id="lttsjobrole" name="lttsjob_role" class="form-control" required>
+						</div>
+						<div class="col-sm-1"></div>
+					</div>					
+					<div class="row">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-2">
+							<label style="width: 113px;"><span style="color:red">*</span>Interviewer Name:</label>
 						</div>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="lttsintname" name="lttsint_name"
 								class="form-control" required>
-						</div>
-						<div class="col-sm-2">
-							<label><span style="color:red">*</span>Interview Date:</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="date" id="lttsintdate" name="lttsint_date" class="form-control" required>
-						</div>
-						<div class="col-sm-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-sm-1"></div>
-
-						<div class="col-sm-2">
-							<label style="width: 113px;"><span style="color:red">*</span>Interview Time:</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="date" id="lttsinttime" name="lttsint_time" class="form-control"
-								required>
 						</div>
 						<div class="col-sm-2">
 							<label><span style="color:red">*</span>Interview Type:</label>
@@ -3745,12 +3758,25 @@ $(document).ready(function() {
 							<select id="lttsinttype" name="lttsint_type" class="form-control"
 								required></select>
 						</div>
+						<div class="col-sm-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-1"></div>
+
+						<div class="col-sm-2">
+							<label style="width: 113px;"><span style="color:red">*</span>Interview Date & Time:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="datetime-local" id="lttsinttime" name="lttsint_time" class="form-control"
+								required>
+						</div>
+						
 						<div class="col-sm-1"> </div>
 					</div>
 					<div class="row">
 						<div class="col-sm-1"></div>
 						<div class="col-sm-2">
-							<label style="width: 113px;"><span style="color:red">*</span>Location:</label>
+							<label style="width: 113px;"><span style="color:red">*</span>Intrview Location:</label>
 						</div>
 						<div class="col-sm-3">
 
