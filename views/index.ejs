@@ -436,7 +436,8 @@
 <script>
 
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+	$('.js-example-basic-single').select2();
+	
 });
 
 
@@ -468,6 +469,73 @@ $(document).ready(function() {
 
 		}).show();
 	}
+
+	function ExportToExcel(tableid) {
+	
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+		tab = document.getElementById("joblistingbody");//.getElementsByTagName('table'); // id of table
+		
+        if (tab==null) {
+            return false;
+        }
+        if (tab.rows.length == 0) {
+            return false;
+        }
+
+        for (j = 0 ; j < tab.rows.length ; j++) {
+			
+			tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+		
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "download.xls");
+        }
+        else                 //other browser not tested on IE 11
+            //sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+            try {
+                var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+                window.URL = window.URL || window.webkitURL;
+                link = window.URL.createObjectURL(blob);
+                a = document.createElement("a");
+                if (document.getElementById("caption")!=null) {
+                    a.download=document.getElementById("caption").innerText;
+                }
+                else
+                {
+                    a.download = 'download';
+                }
+
+                a.href = link;
+
+                document.body.appendChild(a);
+
+                a.click();
+
+                document.body.removeChild(a);
+            } catch (e) {
+            }
+
+
+        return false;
+        //return (sa);
+    }
+
 
 
 
@@ -607,10 +675,10 @@ $(document).ready(function() {
 
 
 	function editjobtitilebyreqid() {
-		console.log("editjobbyid");
+	
 		var reqId = $('[name="pjob_recid"]').find(":selected").val();
 
-		console.log(reqId);
+		
 		var jobtitilebyreqid = "";
 		var url = "http://localhost:2000/jobtitlebyreqid/" + reqId;
 
@@ -935,6 +1003,7 @@ $(document).ready(function() {
 			success: function (result) {
 			
 				for (var i = 0; i < result[0].length; i++) {
+					
 					var jobdescriptionID = "\"" + result[0][i].jobdescriptionid + "\"";
 					tableData = tableData + "  <tr class='content'> " +
 						//"<td id='' hidden>" + result[0][i].contactid + "</td>" +
@@ -1213,7 +1282,7 @@ $(document).ready(function() {
 						"<td >" + result[0][i].skillset + "</td>" +
 						"<td >" + result[0][i].experince + "</td>" +
 						"<td >" + result[0][i].status + "</td>" +
-						"<td >" + result[0][i].pvendorname+ "</td>" +
+						// "<td >" + result[0][i].pvendorname+ "</td>" +
 						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#profileEditModal' data-toggle='modal' data-backdrop='static' data-keyboard='false'  onclick=' statuschange(" + statusId + "),profilesdisplay(" + profileID + ")' style='font-size: 20px;color:black;position:relative;left:3%;'></i>" + "</a>" + "</td>" +
 
 						"</tr>";
@@ -1237,7 +1306,7 @@ $(document).ready(function() {
 			url: url,
 			type: "GET",
 			success: function (result) {
-	 // console.log(result);
+	
 	  if(result[0][0].Resignation=='Y'){
 		$("#editresignedy").prop('checked', true);
 		
@@ -2207,7 +2276,7 @@ $(document).ready(function() {
 														<div class="col-sm-2" ></div>
 														<div class="col-sm-2"></div>
 													<div class="col-sm-2"  style="left:25%">
-														<a href="#" onClick="$('#jobtable').tableExport({type:'excel',escape:'false'});">
+														<a href="#" onClick="ExportToExcel($('#jobtable'));">
 															<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
 														</a>
 													</div>
@@ -2291,7 +2360,7 @@ $(document).ready(function() {
 											</div>
 
 											<div class="col-sm-2" style="left:25%;float:left;">
-												<a href="#" onClick="$('#profiletable').tableExport({type:'excel',escape:'false'});">
+												<a href="#" onClick="ExportToExcel($('#profiletable'))">
 												<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
 												</a>
 											</div>
@@ -2319,7 +2388,7 @@ $(document).ready(function() {
 															<th scope="col">Skill</th>
 															<th scope="col">Experience</th>
 															<th scope="col">Status</th>
-															 <th scope="col">Vendor Id</th> 
+															 <!-- <th scope="col">Vendor Id</th>  -->
 															<th data-orderable="false" scope="col">Action</th>
 														</tr>
 													</thead>
@@ -2709,12 +2778,10 @@ $(document).ready(function() {
 										ID:</label>
 								</div>
 								<div class="col-sm-3">
-									<select onchange="editjobtitilebyreqid()" class="js-example-basic-single form-control" id="jobrecid" name="pjob_recid" >
+									<select  class="js-example-basic-single form-control" id="jobrecid" name="pjob_recid" onclick="editjobtitilebyreqid()" >
 										
 									  </select>
-									<!-- <select class="form-control" id="jobrecid" name="pjob_recid"
-										onclick="editjobtitilebyreqid()" class="form-control" required>
-									</select> -->
+									
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;"><span style="color:red">*</span>Job Title:</label>
